@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <AddTask/>
+    <AddTask @add-task="AddTask"/>
     <Header title="Hello"/>
     <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks"/>
   </div>
@@ -23,6 +23,9 @@ export default {
     }
   },
   methods:{
+    addTask(task){
+      this.tasks =[...this.tasks,task]
+    },
     deleteTask(id){
       if(confirm('Are you sure')){
               this.tasks = this.tasks.filter((task) => task.id !==id)
